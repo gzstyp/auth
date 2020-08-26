@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="auths">
+
+    <!-- 添加 -->
+    <update id="addAuth" parameterType="HashMap">
+        INSERT INTO auths
+            (
+                kid,
+                id_card,
+                real_name,
+                file_path,
+                avatar
+            )
+            VALUES
+            (
+                #{kid},
+                #{idCard},
+                #{realName},
+                #{filePath},
+                #{url}
+            )
+    </update>
+
+    <!-- 根据用户之前是否认证 -->
+    <select id="queryByExist" resultType="String" parameterType="HashMap">
+        SELECT avatar FROM auths WHERE real_name = #{realName} AND id_card = #{idCard} LIMIT 1
+    </select>
+
+</mapper>
